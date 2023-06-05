@@ -1,0 +1,83 @@
+Introduction to Java
+
+Classes
+- syntax inside the curly braces is part of the class
+- each file has one primary class named after the file
+- every word is capitalized
+- inside the class we have a main() method which lists our program tasks
+- we use curly braces to mark the beginning and end of a method
+- public, static and void are syntax
+- String[] args is a placeholder for information we want to pass into our program
+- a simple program can print the text "Hello World" on the screen using this statement:
+System.out.println("Hello World");
+
+Print Statements
+System.out.println("Hello World");
+
+- print statements output information to the screen
+- system: is a built-in Java class that contains useful tools for our programs
+- out is short for output
+- println is short for "print line"
+
+- we can use that syntax whenever we want the program to create a new line on the screen after outputting a value
+System.out.println("Hello World");
+System.out.println("Today is a great day to code!");
+
+- after Hello World is printed, the output terminal creates a new line for the next statement to be outputted
+- we can also output information using System.out.print()
+- thus type of print statement outputs everything on the same line
+- for example:
+System.out.print("Hello ");
+System.out.print("World");
+
+- the above code will have the following output:
+Hello World
+
+- in this example, if you were to use print() or println() again, the new text will print immediately after World on the same line
+- it's important to remember where you left the program's cursor
+- if you use println() the cursor is moved to the next line
+- if you use print() the cursor stays on the same line
+
+Commenting Code
+
+- when comments are short we use single-line syntax:
+//your comment here
+
+- when comments are long we use the multi-line syntax:
+/*
+lorem
+ipsum
+*/
+
+- another type of commenting option is the Javadoc comment which is represented by /** and */
+- Javadoc comments are used to create documentation for API
+- when writing Javadoc comments, remember that they will eventually be used in the documentation that your users might read, so make sure to be especially thoughtful when writing these comments
+- Javadoc comments are typically written before the declaration of fields, methods, and classes
+
+Semicolons and Whitespace
+
+- Java does not interpret whitespace, the areas of the code wihtout syntax, but humans use whitespace to read code without difficulty
+- Java does interpret semicolons
+- semicolons are used to mark the end of a statement, one line of code that performs a single tasks
+- there are no semicolons at the end of a curly brace
+
+Compilation: Catching Errors
+
+- Java is a compiled programming language, meaning the code we write in .java is transformed into byte code by a compiler before its executed by the Java Virtual Machine on your computer
+- the compiling process catches mistakes before the computer runs our code
+- compile in the terminal as such:
+javac FileName.java
+
+- a successful compilation produces a .class file: FileName.class
+- that gets executed with the terminal command:
+java FileName
+
+- an unsuccessful compilation produces a list of Errors
+- no .class files is made until the errors are corrected and the compile command is run again
+
+Compilation: Creating Executables
+
+Java Program Structure
+
+- java is case-sensitive, meaning that syntax, must match the case
+

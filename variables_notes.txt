@@ -1,0 +1,125 @@
+Variables
+
+- we store information in variables, named locations in memory
+- naming a piece of information allows us to use that name later, accessing the information we stored
+- variables so give context and meaning to the data we're storing
+- the value 42 could be someone's age, or order
+- with a name we know the value 42 is age, or order
+- in Java, we specify the type of information we're storing
+- Primitive data types are types of data built-into Java
+- the three main primitive types are: int, double and boolean
+- we must declare a variable to reference it within our program
+- declaring a variable requires that we specify the type and name:
+int age;
+double salaryRequirement;
+boolean isEmployed;
+
+- to assign a value to a variable, we use the assignment operator =
+age = 85;
+
+- when code is used to represent a fixed value, like 85, it is referred to as a literal
+
+ints
+
+- the first type of data we will store is the whole number
+- in java, whole numbers are stored in the int primitive data type
+- int hold positive numbers, negative numbers, and zero
+- they do not store fractions or numbers with decimals
+- to declare a variable of type int, we use the int keyword before the variable name:
+
+// int variable declaration
+int yearJavaWasCreated;
+// assignment
+yearJavaWasCreated = 1996;
+// declaration and assignment
+int numberOfPrimitiveTypes = 8;
+
+doubles
+
+- the double primitive data type can hold decimals as well as very large and very small numbers
+- to declare a variable type double, we use the double keyword in the declaration:
+
+// doubles can have decimal places:
+double price = 8.99;
+// doubles can have values bigger than what an int could hold:
+double gdp = 12237700000;
+
+booleans
+
+- a type that references one of two values: true or false
+- we declare boolean variables by using the keyword boolean before the variable name:
+
+boolean javaIsACompiledLanguage = true;
+boolean javaIsACupOfCoffee = false;
+
+char
+
+- the char data type can hold any character, like a letter, space, or punctuation mark
+
+char grade = 'A';
+char firstLetter = 'p';
+char punctuation = '!';
+
+Strings
+
+- strings are objects, instead of primitives and have built-in behaviors
+- string hold sequences of characters
+- there are two ways to create a string object: using a String literal, or calling the String class to create a new String object
+- a string literal is any sequence of characters enclosed in double-quotes
+- like primitive-type variables, we declare a string variable by specifying the type first:
+String greeting = "Hello World";
+
+- we could also create a new string object by calling the string class when declaring a string:
+String salutations = new String("Hello World");
+
+- there are subtle differences in behavior depending on whether you create a String using a String literal or a new String object
+
+- certain symbols, known as escape sequences, have an alternative use in Java print statements
+- escape sequences are interpreted differently by the compiler than other characters
+- escape characters begin with the character \
+- the \" allows us to add quotation marks to a string value:
+System.out.println("\"Hello World\"");
+// Prints: "Hello World"
+
+- using the \\ escape sequence allows us to place backslashes in our String text:
+System.out.println("This is the backslash symbol: \\");
+// Prints: This is the backslash symbol: \
+
+- finally, if we place \n escape sequence in a string, the compiler will output a new line of text:
+System.out.println("Hello\nGoodbye");
+/*
+Prints:
+Hello
+Goodbye
+*/
+
+Static Checking
+
+- the Java programming language has static typing
+- Java programs will not compile if a variable is assigned a value of an incorrect type
+- this is a declaration bug
+- when bugs are not caught at compilation, they interrupt execution of the code by causing runtime errors
+
+Naming
+
+- naming variables according to convention leads to clear, readable, and maintanable code
+- in Java, variable names are case-sensitive
+- a variable starts with a valid letter or a $ or a _
+- no other symbols or numbers can begin a variable name
+- 1stPlace and *Gazer are not valid variable names
+- variables of only one word are spelled in all lowercase letters
+- variable names of more than one word should have the first letter lowercase while the beginning letter of each subsequent word is capitalized
+- this style is called camelCase
+
+// good style
+boolean isHuman;
+
+// bad styles
+// no capitalization for new word
+boolean ishuman;
+// first word should be lowercase
+boolean IsHuman;
+// underscores don't separate words
+boolean is_human;
+
+
