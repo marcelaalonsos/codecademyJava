@@ -123,3 +123,182 @@ boolean IsHuman;
 boolean is_human;
 
 
+Manipulating Variables
+
+- we can use expressions, arithmetic operators, and more in order to change our variables' values
+
+// declare initial balance
+double balance = 20000.99;
+// declare deposit amount
+double depositAmount = 1000.00;
+// store result of calculation in our original variable
+balance = balance + depositAmount;
+
+- the data type of a variable plays a large role in the operations we can use to manipulate it
+- we can think of a data type as a combination of a set of values, and a set of operations on those values
+- the data type of an expression is determined by the resulting value
+
+
+Addition and Subtraction
+
+- we can use the + operator to add values:
+
+double balance = 20000.99;
+double depositAmount = 1000.0;
+balance = balance + depositAmount;
+// balance now holds 21000.99
+
+- we would use - operator to subtract:
+
+double withdrawAmount = 500;
+balance = balance - withdrawAmount;
+// balance now holds 19500.99
+
+- addition and subtraction work with int type values:
+
+int numPicturesOfCats = 60 + 24;
+
+- increment operator ++ increases the value by 1 and reassigns it
+- the decrement operator -- decreases de value by 1 and reassigns it
+
+// Take a picture
+numPicturesOfCats++ // Value is now 85
+
+// Delete a picture
+numPicturesOfCats-- // Value is now 84
+
+Multiplication and Division
+
+- division has different results with integers
+- the / operator does integer division, which means that any remainder is lost
+int evenlyDivided = 10 / 5;
+//evenlyDivided holds 2, because 10 divided by 5 is 2
+int unevenlyDivided = 10 / 4;
+//unevenlyDivided holds 2, because 10 divided by 4 is 2.5
+
+- int does not round the decimal, but floors it
+- it's important to note that if we try to divide any number by 0, we will get an arithmeticexception error as a result
+
+Modulo
+
+- the modulo operator % gives us the remainder after two numbers are divided
+int cookiesBaked = 10;
+int cookiesLeftover = 10 % 3;
+//cookiesLeftover holds 1
+
+- modulo can help determine wheter a number is even or odd
+- dividing an even numb by 2 will have a remainder of 0
+- dividing an odd number by 2 will have a remainder of 1
+
+7 % 2
+// 1, odd!
+8 % 2
+// 0, even!
+9 % 2
+// 1, odd!
+
+Compound Assignment Operators
+
+- compound assignment operators perform an arithmetic operation on a variable and then reassigns its value
+numCupcakes += 8; // Value is now 20
+- we can use compound assignment operators for all the arithmetic operators:
+- addition +=
+- subtraction -=
+- multiplication *=
+- division /=
+- modulo %=
+
+Order of operations
+
+- are evaluated left to right
+1. parenthesis
+2. exponents
+3. modulo/multiplication/subtraction
+4. addition / subtraction
+
+Greater than and less than
+
+- Java has relational operators for numeric datatypes that make boolean comparissons
+- these include less than < and greater than >
+double balance = 20000.01;
+double amountToWithdraw = 5000.01;
+System.out.print(amountToWithdraw < balance);
+//this will print true, since amountToWithdraw is less than balance
+
+- you can save the result of a comparisson as a boolean
+double myBalance = 200.05;
+double costOfBuyingNewLaptop = 1000.05;
+boolean canBuyLaptop = myBalance > costOfBuyingNewLaptop;
+//canBuyLaptop is false, since 200.05 is not more than 1000.05
+
+Equals and Not Equals
+
+- equality check is two equal signs
+double paycheckAmount = 620;
+double calculatedPaycheck = 15.50 * 40;
+
+System.out.print(paycheckAmount == calculatedPaycheck);
+// This will print true, since paycheckAmount equals calculatedPaycheck
+
+- to check if two variables are not equal we can use !=
+double balance = 20000.0;
+double amountToDeposit = 620;
+double updatedBalance = balance + amountToDeposit;
+
+boolean balanceHasChanged = balance != updatedBalance;
+// balanceHasChanged holds true, since balance does not equal updatedBalance
+
+Greater/less than or Equal To
+
+double paycheckAmount = 620;
+double calculatedPaycheck = 15.50 * 40;
+System.out.println(paycheckAmount >= calculatedPaycheck);
+//this will print true, since paycheckAmount equals calculatedPaycheck
+
+.equals()
+
+- with objects such as string, we can't use the primitive equality operator
+- to test equality with objects, we use a built-in method called .equals()
+- when comparing objects make sure to always use .equals()
+- == will work occassionally, but the reason why it sometimes works has to do with how objects are stored in memory
+- to use it, we call it on one string by using . and pass in the string to compare against in parenthesis
+
+String person1 = "Paul";
+String person2 = "John";
+String person3 = "Paul";
+
+System.out.println(person1.equals(person2));
+// Prints false, since "Paul" is not "John"
+
+System.out.println(person1.equals(person3));
+// Prints true, since "Paul" is "Paul"
+
+String Concatenation
+
+- the + operator can be used to concatenate strings
+
+String username = "PrinceNelson";
+System.out.println("Your username is: " + username);
+
+- this code will print:
+
+Your username is: PrinceNelson
+
+- we can even use primitive datatype as the second variable to be concatenate, and Java will make it a string first
+
+int balance = 10000;
+String message = "Your balance is: " + balance;
+System.out.println(message);
+
+- this code will print:
+Your balance is: 10000
+
+final keyword
+
+- what do we do with a varible that should never change its value?
+- to declare a variable with a value that cannot be manipulated, we need to use the final keyword
+- to use the final keyword, prepend final to a variable declaration like so:
+final int yearBorn = 1989;
+
+- when we declare a variable using final, the value cannot be changed
+- any attempts will cause an error to occur

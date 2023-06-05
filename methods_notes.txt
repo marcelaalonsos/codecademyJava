@@ -1,0 +1,270 @@
+Methods
+
+Introduction
+
+- methods are repeatable, modular blocks of code used to accomplish specific tasks
+- we have the ability to define our own methods that will take input, do something with it, and return the kind of output we want
+- through method decomposition, we can use methods to break down a large problem into smaller more manageable problems
+- methods are reusable
+
+Defining methods
+- if we were to define a checkingBalance() method for the savings account class:
+public void checkBalance(){
+  System.out.println("Hello!");
+  System.out.println("Your balance is " + balance);
+}
+
+- the first line, public void checkBalance() is the method declaration:
+- public means that other classes can access this method
+- void keyword means that there is no specific output from the method
+- checkBalance() is the name of the method
+
+- every methods has its own unique method signature which is comprised of the method's name and its parameter type
+- in this example, the method signature is checkBalance()
+
+- the two print statements are inside the body of the method, which is defined by the curly braces {}
+- anything we can do in our main() method we can do in other methods
+- checkBalance is considered a non-static method because its signature does not include the keyword static like the main() method does
+
+Calling Methods
+
+- when we add a non-static method to a class, it becomes available to use on an object of that class
+- in order to have our methods get executed, we must call the method on the object we created
+
+- let's add a non-static method startEngine to Car class:
+class Car {
+
+  String color;
+
+  public Car(String carColor) {
+    color = carColor;
+  }
+
+  public void startEngine() {
+    System.out.println("Starting the car!");
+    System.out.println("Vroom!");
+  }
+
+  public static void main(String[] args){
+    Car myFastCar = new Car("red");
+    // Call a method on an object
+    myFastCar.startEngine();
+    System.out.println("That was one fast car!");
+  }
+}
+
+- let's take a closer look at the method call:
+myFastCar.startEngine();
+
+- first, we reference our object myFastCar
+- then, we use the dot operator to call the method
+- notice that we must include parentheses after our method name in order to call it
+- when  a method is called, the compiler executes every statement contained within the method
+- once all method instructions are executed, the top-down order of execution continues
+
+Scope
+
+- we mark the domain of a method using curly braces
+- everything inside the curly braces is part of the task
+- this domian is called scope of a method
+- we can't access variables that are declared inside a method in code that is outside the scope of that method:
+
+class Car {
+  String color;
+  int milesDriven;
+
+  public Car(String carColor) {
+    color = carColor;
+    milesDriven = 0;
+  }
+
+  public void drive() {
+     String message = "Miles driven: " + milesDriven;
+     System.out.println(message);
+  }
+
+  public static void main(String[] args){
+     Car myFastCar = new Car("red");
+     myFastCar.drive();
+  }
+}
+
+- the variable message, which is declared and initialized inside of drive, cannot be used inside of main()
+- it only exists within the scope of the drive() method
+- however, milesDriven, which is declared at the top of the class, can be used inside all methods in the class, since it is in the scope of the whole class
+
+Adding Parameters
+
+- what if we had some information in one method that we needed to pass into another method?
+- we can customize all other methods to accept parameters
+- for example, we create a startRadio() methods that accepts a double parameter stationNum, and a string parameter called stationName:
+
+class Car {
+
+  String color;
+
+  public Car(String carColor) {
+    color = carColor;
+  }
+
+  public void startRadio(double stationNum, String stationName) {
+    System.out.println("Turning on the radio to " + stationNum + ", " + stationName + "!");
+    System.out.println("Enjoy!");
+  }
+
+  public static void main(String[] args){
+    Car myCar = new Car("red");
+    myCar.startRadio(103.7, "Meditation Station");
+  }
+}
+
+- adding parameter values impacts our method's signature
+- like constructor signatures, the method signature includes the method name as well as the parameter types of the method
+- the signature of the above method is startRadio(double, string)
+- in the main() method, we call the startRadio() method on the myCar object and provide a double argument of 103.7 and a string argument of "meditation station"
+- notice that when we call on a method with multiple parameters, the arguments given in the call must be placed in the same order as the parameters appear in the signature
+
+- through method overloading, our Java programs can contain multiple methods with the same name as long as each method's parameter list is unique
+- for example, can recreate our above program to contain two startRadio() methods:
+
+// Method 1
+public void startRadio(double stationNum, String stationName) {
+  System.out.println("Turning on the radio to " + stationNum + ", " + stationName + "!");
+  System.out.println("Enjoy!");
+}
+
+// Method 2
+public void startRadio(double stationNum) {
+  System.out.println("Turning on the radio to " + stationNum + "!");
+}
+
+public static void main(String[] args){
+  Car myCar = new Car("red");
+  // Calls the first startRadio() method
+  myCar.startRadio(103.7, "Meditation Station");
+
+  // Calls the second startRadio() method
+  myCar.startRadio(98.2);
+}
+
+Reassigning Instance Fields
+
+public class SavingsAccount{
+  double balance;
+  public SavingsAccount(double startingBalance){
+    balance = startingBalance;
+  }
+
+  public void deposit(double amountToDeposit){
+     //Add amountToDeposit to the balance
+  }
+
+  public void withdraw(double amountToWithdraw){
+     //Subtract amountToWithdraw from the balance
+  }
+
+  public static void main(String[] args){
+
+  }
+}
+
+- these methods would change the value of the variable balance
+- we can reassign balance to be a new value by using our assignment operator = again:
+public void deposit(double amountToDeposit){
+  double updatedBalance = balance + amountToDeposit;
+  balance = updatedBalance;
+}
+
+- now when we call deposit() it should change the value of the instance field balance:
+public static void main(String[] args){
+  SavingsAccount myAccount = new SavingsAccount(2000);
+  System.out.println(myAccount.balance);
+  myAccount.deposit(100);
+  System.out.println(myAccount.balance);
+}
+
+- this code prints 2000, the initial value of myAccount.balance, and then prints 2100 which is the value of myAccount.balance after the deposit() method has run
+- changing instance field is how we change the state of an object and make our objects more flexible and realistic
+
+Returns
+
+- variables can only exist in the scope that they were declared in
+- we can use a value outside of the method it was created in if we return it from the method
+- we return a value by using the return keyword:
+public int numberOfTires() {
+   int tires = 4;
+   // return statement
+   return tires;
+}
+
+- this method called numberOfTires() returns 4
+- once the return statement is executed, the compiler exits the function
+- any code that exists after the return statement in a function is ignored
+- in past exercises, when creating new methods, we used the keyword void
+- here we are replacing void with int to signify that the return type is an int
+- the void keyword (which means "completely empty") indicates that no value is returned after calling that method
+- a non-void method, like numberOfTires() returns a value when it is called
+- we can use datatype keywords to specify the type of value the method should return
+- the return value's type must match the return type of the method
+- if the return expression is compatible with the return type, a copy of that value gets returned in a process known as return by value
+- unlike void methods, non-void methods can be used as either a variable value or as part of an expression like so:
+
+public static void main(String[] args){
+    Car myCar = new Car("red");
+    int numTires = myCar.numberOfTires();
+}
+
+- within main() we called numberOfTires() method on myCar
+- since the method returns an int value 4, we store the value in an integer variable called numTires
+- if we printed numTires we would see 4
+
+- returning an object works a little differently than returning a primitive value
+- when returning a primitive value, a copy of the value is returned, howeverm when we return an object, we return a reference to the object instead of a copy of it
+- let's create a second class, carLot, that takes in a Car as a parameter and contains a method which returns a Car object:
+
+class CarLot {
+    Car carInLot;
+    public CarLot(Car givenCar) {
+        carInLot = givenCar;
+    }
+
+    public Car returnACar() {
+        // return Car object
+        return carInLot;
+    }
+
+    public static void main(String[] args) {
+        Car myCar = new Car("red", 70);
+        System.out.println(myCar);
+        CarLot myCarLot = new CarLot(myCar);
+        System.out.println(myCarLot.returnACar());
+    }
+}
+
+- this code outputs the same memory address because myCar and carInLot have the same reference value
+
+The toString() Method
+
+- when we print out objects, we often see a string that is not very helpful as it just prints its position in memory
+- we can add a method to our classes that makes the printout more descriptive
+- when we define a toString() method for a class, we can return a String that will print when we print the object:
+
+class Car {
+
+    String color;
+
+    public Car(String carColor) {
+        color = carColor;
+    }
+
+    public static void main(String[] args){
+        Car myCar = new Car("red");
+        System.out.println(myCar);
+    }
+
+   public String toString(){
+       return "This is a " + color + " car!";
+   }
+}
+
+- when this runs, the command System.out.println(myCar) will print this is a red car!, which tells us about the object myCar
