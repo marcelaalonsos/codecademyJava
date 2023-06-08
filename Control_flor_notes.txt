@@ -1,0 +1,318 @@
+Control Flow
+
+Introduction
+
+- we can represent decision-making in our program using conditional or control flow statements
+- conditional statements check a boolean condition and run a block of code depending on the condition
+- curly braces mark the scope of a conditional block
+- here's a complete conditional statement:
+if (true) {
+
+  System.out.println("Hello World!");
+
+}
+
+- if the condition is true, then the block is run
+- suppose the condition is different:
+if (false) {
+
+  System.out.println("Hello World!");
+
+}
+
+- if the condition is false, then the block does not run
+- this code is also called if-then statements: "if condition if true, then do something"
+
+if-then statement
+
+- the if-then statement is the most simple control flow we can write
+- it tests an expression for truth and executes some code based on it
+if (flip == 1) {
+
+  System.out.println("Heads!");
+
+}
+- the if keyword marks the beginning of the conditional statement, followed by parentheses
+- the parentheses hold a boolean datatype
+
+- for the condition in parentheses we can also use variables that reference a boolean, or comparissons that evaluate to a boolean
+- the boolean condition is followed by opening and closing curly braces that mark a block of code
+- this block runs if and only if the boolean is true
+boolean isValidPassword = true;
+
+if (isValidPassword) {
+
+  System.out.println("Password accepted!");
+
+}
+
+// Prints "Password accepted!"
+
+int numberOfItemsInCart = 9;
+
+if (numberOfItemsInCart > 12) {
+
+  System.out.println("Express checkout not available");
+
+}
+
+// Nothing is printed.
+
+- if the conditional is brief, we can omit the curly braces entirely:
+if (true) System.out.println("Brevity is the soul of wit");
+
+- note: conditional statements do not end in a semicolon
+
+if-then-else
+
+- we can create an alternate conditional branch with the else keyword:
+if (hasPrerequisite) {
+
+  // Enroll in course
+
+} else {
+
+  // Enroll in prerequisite
+
+}
+
+- this conditional statement ensures that exactly one code block will run
+- if the condition, hasPrerequisite is false, the block after else runs
+- there are now two separate code blocks in our conditional statement
+- the first block runs if the condition evaluates to true, the second block runs if the condition evaluates to false
+- this code is also called an if-then-else statement:
+- if condition is true, then do something
+- else, do a different thing
+
+if-then-else-if
+
+- the conditonal structure we've learned can be chained together to check as many conditons as are required by our program
+- the conditional statementnow has multiple conditions that are evaluated from the top down:
+String course = "Theatre";
+
+if (course.equals("Biology")) {
+
+  // Enroll in Biology course
+
+} else if (course.equals("Algebra")) {
+
+  // Enroll in Algebra course
+
+} else if (course.equals("Theatre")) {
+
+  // Enroll in Theatre course
+
+} else {
+
+  System.out.println("Course not found!");
+
+}
+
+- the first condition to evaluate to true will have that code block run
+int testScore = 72;
+
+if (testScore >= 90) {
+
+  System.out.println("A");
+
+} else if (testScore >= 80) {
+
+  System.out.println("B");
+
+} else if (testScore >= 70) {
+
+  System.out.println("C");
+
+} else if (testScore >= 60) {
+
+  System.out.println("D");
+
+} else {
+
+  System.out.println("F");
+
+}
+// prints: C
+
+- this chained conditional statement has two conditions that evaluate true
+- because testScore >=70 comes before testScore >=60 only the earlier code block is run
+
+Nested Conditional Statements
+
+- we can create more complex conditional structures by creating nested conditional statements, which is created by placing conditional statements inside other conditional statements:
+if (outer condition) {
+  if (nested condition) {
+    Instruction to execute if both conditions are true
+  }
+}
+
+- when we implement nested conditional statements, the outer statement is evaluated first
+- if the outer condition is true, then the inner, nested statement is evaluated
+
+int temp = 45;
+boolean raining = true;
+
+if (temp < 60) {
+  System.out.println("Wear a jacket!");
+  if (raining == true) {
+    System.out.println("Bring your umbrella.");
+  } else {
+    System.out.println("Leave your umbrella home.");
+  }
+}
+
+- in the code snippet above, our compiler will check the condition in the first if-then statement: temp < 60
+- since temp has a value of 45 then the condition is true
+- therefore, our program will print wear a jacket
+- then, we'll evalute the condition of the nested if-then statement raining == true
+- this condition is also true, so bring your umbrella is also printed to the screen
+- note that is the first condition was false, the nested condition would not be evaluated
+
+Switch Statement
+
+- an alternative to chaining if-then-else conditions together is to use the switch statement
+- this conditional will check  a given value against any number of conditions and run the code bloc where there is a match
+
+- here's an example:
+String course = "History";
+
+switch (course) {
+  case "Algebra":
+    // Enroll in Algebra
+    break;
+  case "Biology":
+    // Enroll in Biology
+    break;
+  case "History":
+    // Enroll in History
+    break;
+  case "Theatre":
+    // Enroll in Theatre
+    break;
+  default:
+    System.out.println("Course not found");
+}
+
+- the example enrolls the student in History class by checking the value contained in parentheses, course against each of the case labels
+- if the value after the case label matches the value within the parentheses, the switch block is run
+
+- in the above example, course references the string History, which matches case History
+
+- when no value matches, the default block runs
+- think of this as the else statement
+- switch blocks are different than other code blocks because they are not marked by curly braces and we use the break keyword to exit the switch statement
+- without break, code below the matching case label is run, including code under other case labels, which is rarely the desired behavior
+
+String course = "Biology";
+
+switch (course) {
+  case "Algebra":
+    // Enroll in Algebra
+  case "Biology":
+    // Enroll in Biology
+  case "History":
+    // Enroll in History
+  case "Theatre":
+    // Enroll in Theatre
+  default:
+    System.out.println("Course not found");
+}
+
+// enrolls student in Biology... AND History and Theatre!
+
+Introduction to Conditional Operators
+
+- Java includes operators that only use boolean values
+- these conditional operators help simplify expressions containing complex boolean relationships by reducing multiple boolean values to a single value: true or false
+- for example, what if we want to run a code block only if multiple conditions are true
+- we could use the AND operator: &&
+- Or, we want to run a code block if at least one of two conditions are true. We could use the OR operator: ||
+- finally, we can produce the opposite value, where true becomes false and false becomes true, with the NOT operator: !
+
+Conditonal And &&
+- the AND operator && is used between two boolean values and evaluates to a single boolean value
+- is the value on both sides are true, then the resulting value is true, otherwise the resulting value is false
+
+true && true
+// true
+false && true
+// false
+true && false
+// false
+false && false
+// false
+
+Conditional-Or: ||
+
+- the OR operator || is used between two boolean values and evaluates to a single boolean value
+- if either of the two values is true, then the resulting value is true, otherwise the resulting value is false
+
+true || true
+// true
+false || true
+// true
+true || false
+// true
+false || false
+// false
+
+- on some occasions, the compiler can determine the truth value of a logical expression by only evaluating the first boolean operand; this is known as short-circuited evaluation
+- short-circuited only works with expressions that use && or ||
+- in an expression that uses || the resulting value will be true as long as one of the operands has a true value
+- if the first operand of an expression is true, we don't need to see what the value of the other operand is to know that the final value will also be true
+- for example, we can run the following code without error despite dividing a number by 0 in the second operand because the first operand had a true value:
+if (1 > 0 || 2 / 0 == 7) {
+  System.out.println("No errors here!");
+}
+
+- an expression that uses && will only result in true if both operands are true
+- if the first operand in the expression is false, the entire value will be false
+
+Logical NOT: !
+- the unary operator NOT, ! works on a single value
+- this operator evaluates to the opposite boolean to which it's applied:
+!false
+// true
+!true
+// false
+
+NOT is useful for expressing our intent clearly in programs
+- for example, sometimes we need the opposite behavior of an if-then: run a code block only if the condition is false:
+boolean hasPrerequisite = false;
+
+if (hasPrerequisite) {
+  // do nothing
+} else {
+  System.out.println("Must complete prerequisite course!");
+}
+
+- this code does what we want but it's strange to have a code block that does nothing
+- the logical NOT operator cleans up our example:
+boolean hasPrerequisite = false;
+
+if (!hasPrerequisite) {
+  System.out.println("Must complete prerequisite course!");
+}
+
+Combining Conditional Operators
+- we have the ability to expand our boolean expressions by using multiple conditional operators in a single expression:
+boolean foo = true && !(false || !true)
+
+- the order of evaluation when it comes to conditional operators is as follows:
+1. conditions placed in parentheses ()
+2. NOT !
+3. AND &&
+4. OR ||
+
+true && !(false || !true)
+- first we evaluate (false || !true) because it is enclosed within parentheses
+- following the order of evaluation, we will evaluate !true, which equals false:
+true && !(false || false)
+- then, we'll evaluate (false || false) which equals false
+- now our expression looks like this:
+true && !false
+- next, we'll evaluate !false because it uses the NOT operator
+- this expression equals true making our expression the following:
+true && true
+- true && true evaluates to true
+- therefore, the value is true
