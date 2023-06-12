@@ -1,0 +1,324 @@
+Loops
+
+Introduction
+
+- a loop is a programming tool that allows developers to repeat the same block of code until some condition is met
+- first, a starting condition is evaluated
+- if the starting condition is true, then the loop body is executed
+- when the last line of the loop body is executed, the condition is re-evaluated
+- this process continues until the condition is false (if the condition never becomes false, we can end up with an infinite loop)
+- if the starting condition is false, the loop never gets executed
+
+While Loops
+
+- a while loop looks a bit like an if statement:
+
+while (silliness > 10) {
+  //code to run
+}
+
+- like an if statement, the code inside a while loop will only run if the condition is true
+- however, a while loop will continue running the code over and over until the condition evaluates to false
+- so the code block will repeat until silliness is less than or equal to 10
+
+// set attempts to 0
+int attempts = 0;
+
+// enter loop if condition is true
+while (passcode != 0524 && attempts < 4) {
+
+  System.out.println("Try again.");
+  passcode = getNewPasscode();
+  attempts += 1;
+
+  // is condition still true?
+  // if so, repeat code block
+}
+// exit when condition is not true
+
+- while loops are extremely useful when you want to run some code until a specific change happens
+- however, if you are not certain that change will occur, it can be an infinite loop
+- infinite loops occur when the condition will never evaluate to false
+- this can cause your entire program to crash
+int hedgehogs = 5;
+
+// This will cause an infinite loop:
+while (hedgehogs < 6) {
+
+  System.out.println("Not enough hedgehogs!");
+
+}
+
+- in the example above, hedgehogs remains equal to 5, which is less than 6, so we will get an infinite loop
+
+Incrementing While Loops
+
+- when looping through code, it's common to use a counter variables
+- a counter (also known as an iterator) is a variable used in the conditional logic of the loop and (usually) incremented in value during each iteration through the code:
+// counter is initialized
+int wishes = 0;
+
+// conditional logic uses counter
+while (wishes < 3) {
+
+  System.out.println("Wish granted.");
+  // counter is incremented
+  wishes++;
+
+}
+
+- in the above example, the counter whishes gets initialized before the loop with a value of 0
+- then the program will keep printing wish granted and adding 1 to wishes as long as wishes has a value of less than 3
+- once wishes reaches a value of 3 or more, the program will exit the loop
+- so the output would look like:
+Wish granted.
+Wish granted.
+Wish granted.
+
+- we can also decrement counters like this:
+int pushupsToDo = 10;
+
+while (pushupsToDo > 0) {
+
+  doPushup();
+  pushupsToDo--;
+
+}
+
+- in the code above, the counter, pushupsToDo starts at 10 and decrements down one at a time
+- when it hits 0, the loop exits
+
+For Loops
+
+- a for loop header is made up of the following three parts, each separated by a semicolon:
+1. the initialization of the loop control variable
+2. a boolean expression
+3. an increment or decrement statement
+
+- the opening line might look like this:
+for (int i = 0; i < 5; i++) {
+
+  // code that will run
+
+}
+
+- in a for loop, an initialization statement is run once in order to initialize the loop control variable
+- this variable is modified in every iteration, can be referenced in the loop body, and used to test the boolean condition
+- in the example above, i is the loop control variable
+- let's break down the above example:
+
+1. i = 0; i is initialized to 0
+2. i < 5; the loop is given a boolean condition that relies on the value of I
+the loop wil continue to execute until i < 5 is false
+3. i++; i will increment at the end of each loop and before the condition is re-evaluated
+
+- so the code will run through the loop a total of 5 times
+- when we iterate, it just means that we are repeating the same block of code
+
+Using for loops
+
+- for loops are useful because they help us remember to increment our counter
+- if we don't create the correct for loop header, we can cause the iteration to loop one too many times or one too few times
+- this occurrence is known as an "off by one" error
+- for example, imagine we wanted to find the sum of the first ten numbers and wrote the following code:
+int sum = 0;
+for (int i = 0; i < 10; i++) {
+  sum += i
+}
+
+- this code will produce an incorrect value of 45
+- we skipped adding 10 to sum because our loop control variables started with the value of 0 and stopped the iteration after it had a value of 9
+- we could fix this by changing the condition of our loop to be i <=0 or i<11
+
+Iterating over Arrays and ArrayLists
+
+- in order to traverse an array or ArrayList using a loop, we must find a way to access each element via its index
+- we may recall that for loops are created with a counter variable
+- we can use that counter to track the index of the current element as we iterate over the list of data
+- because the first index in an array or ArrayList is 0, the counter would begin with a value of 0 and increment until the end of the list
+- so we can increment through the array or ArrayList using its indices
+- for example, if we wanted to add 1 to every int item in an array secretCode, we could do this:
+for (int i = 0; i < secretCode.length; i++) {
+  // Increase value of element value by 1
+  secretCode[i] += 1;
+}
+
+- notice that our condition in this example is i < secretCode.length
+- because array indices start at 0, the length of secretCode is 1 larger than its final Index
+- a loop should stop its traversal before its counter variable is equal to the length of the list
+- to give a concrete example, if the length of an array is 5, the last index we want to access is 4
+- if we were to try to access index 5, we would get an ArrayIndexOutOfBoundsException error
+
+- traversing through an ArrayList looks very similar:
+for (int i = 0; i < secretCode.size(); i++) {
+  // Increase value of element value by 1
+  int num = secretCode.get(i);
+  secretCode.set(i, num + 1);
+}
+
+- we can also use while loops to traverse through arrays and ArrayList
+- if we use a while loop, we need to create our own counter variable to access individual elements
+- we'll also set our condition to continue looping until our counter variable equals the list length
+- for example, let's use a while loop to traverse through an array:
+int i = 0; // initialize counter
+
+while (i < secretCode.length) {
+  secretCode[i] += 1;
+  i++; // increment the while loop
+}
+
+- traversing through an ArrayList with a while loop would look like this:
+int i = 0; // initialize counter
+
+while (i < secretCode.size()) {
+  int num = secretCode.get(i);
+  secretCode.set(i, num + 1);
+  i++; // increment the while loop
+}
+
+Break and Continue
+
+- if we ever want to exit a loop before it finishes all its iterations or want to skip one of the iterations, we can use the break and continue keywords
+- the break keyword is used to exit, or break, a loop
+- once break is executed, the loop will stop iterating:
+for (int i = 0; i < 10; i++) {
+  System.out.println(i);
+  if (i == 4) {
+    break;
+  }
+}
+
+- even though the loop was set to iterate until the condition i < 10 is false, the above code will output the following because we used break:
+0
+1
+2
+3
+4
+
+- the continue keyword can be placed inside of a loop if we want to skip an iteration
+- if continue is executed, the current loop iteration will immediately end, and the next iteration will begin
+- we can use the continue keyword to skip any even valued iteration:
+int[] numbers = {1, 2, 3, 4, 5};
+
+for (int i = 0; i < numbers.length; i++) {
+  if (numbers[i] % 2 == 0) {
+    continue;
+  }
+  System.out.println(numbers[i]);
+}
+
+- this program will output the following:
+1
+3
+5
+
+- in this case, if a number is even, we hit a continue statement, which skips the rest of that iteration, so the print statement is skipped
+- as a result, we only see odd numbers print
+
+- loops can exist all throughout our code - including inside a method
+- if the return keyword was executed inside a loop contained in a method, then the loop iteration would be stopped and the method/constructor would be exited
+- for example, we have a method called checkForJacket() that takes an array of string
+- if any of the elements are equivalent to the string value "jacket" the method will return true:
+public static boolean checkForJacket(String[] lst) {
+  for (int i = 0; i < lst.length; i++) {
+    System.out.println(lst[i]);
+    if (lst[i] == "jacket") {
+      return true;
+    }
+  }
+  return false;
+}
+
+public static void main(String[] args) {
+  String[] suitcase = {"shirt", "jacket", "pants", "socks"};
+  System.out.println(checkForJacket(suitcase));
+}
+
+- as soon as an element equals "jacket" return true is executed
+- this causes the loop to stop and the compiler to exit checkForJacket()
+- running this code would output the following:
+shirt
+jacket
+true
+
+For-Each Loops
+
+- sometimes we need access to the elements' indices or we only want to iterate through a portion of a list
+- if that's the case, a regular for loop or while loop is a great choice
+- for example, we can use a for loop to print out each element in an array called inventoryItems:
+for (int inventoryItem = 0; inventoryItem < inventoryItems.length; inventoryItem++) {
+  // Print element at current index
+  System.out.println(inventoryItems[inventoryItem]);
+}
+
+- but sometimes we couldn't care less about the indices; we only care about the element itself
+- for-each loops, which are also referred to as enhanced loops, allow us to directly loop through each item in a list of items (like an array or ArrayList) and perform some action with each item
+- if we want to use a for-each loop to rewrite our program above, the syntax looks like this:
+for (String inventoryItem : inventoryItems) {
+  // Print element value
+  System.out.println(inventoryItem);
+
+}
+
+- our enhanced loop contains two items: an enhanced for loop variable (inventoryItem) and a list to traverse through (inventoryItems)
+- we can read the : as "in" like this:
+for each inventoryItem in inventoryItems, print inventoryItem
+
+- if we try to assign a new value to the enhanced for loop variable, the value stored in the array or ArrayList will not change
+- this is because, for evert iteration in the enhanced loop, the loop variable is assigned a copy of the list element
+- note: we can name the enhnaced for loop variable whatever we want
+- using the singular of a plural is just a convention
+- we may also encounter conventions like string word : sentence
+
+Removing Elements During Traversal
+
+- if we want to remove elements from an ArrayList while traversing through one, we can easily run into an error
+- when an element is removed from an ArrayList, all the items that appear afther the removed element will have their index value shift by negative one - it's like all the elements shifted to the left
+- we'll have to be very careful with how we use our counter variable to avoid skipping elements
+
+Removing An Element Using while
+
+- when using a while loop and removing elements from an ArrayList, we should not increment the while loop's counter whenever we remove an element
+- we don't need to increase the counter because all of the oth elements have now shifted to the left
+- for example, if we removed the element at index 3, then the element that was at index 4 will be moved to index 3
+- if we increase our counter to 4, we'll skip that element
+
+- take a look at this block of code that will remove all odd numbers from an ArrayList
+- think about what the value of i is, when we're increasing the value of i, and when i < lst.size() becomes false:
+int i = 0; // initialize counter
+
+while (i < lst.size()) {
+  // if value is odd, remove value
+  if (lst.get(i) % 2 != 0){
+    lst.remove(i);
+  } else {
+    // if value is even, increment counter
+    i++;
+  }
+}
+
+Removing An Element Using for
+
+- we can use a similar strategy when removing elements using a for loop
+- when using a while loop, we decided not to increase our loop control variable whenever we removd an element
+- this ensured that we would not skip an element when all of the other elements shifted to the left
+- when using a for loop, we unfortunately, must increase our loop control variable
+- the loop control variable will always change when we reach the end of the loop (and it will usually change by 1 because we often use something like i++)
+- since we can't avoid increasing our loop control variable, we can take matters into our own hands and decrease the loop control variable whenever we remove and item:
+for (int i = 0; i < lst.size(); i++) {
+  if (lst.get(i) == "value to remove"){
+    // remove value from ArrayList
+    lst.remove(lst.get(i));
+    // Decrease loop control variable by 1
+    i--;
+  }
+}
+
+- now whenever we removed an item, we'll decrease i by 1
+- then when we reach the end of the loop, i will increase by 1
+- it will be like i never changed
+
+- note: avoid manipulating the size of an ArrayList when using an enhanced for loop
+- actions like adding or removing elements from an ArrayList when using a for each loop can cause a ConcurrentModificationException error
+
+
