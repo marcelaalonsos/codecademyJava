@@ -1,0 +1,120 @@
+Inheritance and Polymorphism
+
+Introducing Inheritance
+
+- suppose we are building a Shape class in Java
+- we might give it some points in 2D, a method for calculating the area, and another method for displaying the shape
+- but what happens if we want a class for a triangle that has some triangle-specific methods?
+- do we need to redefine all of the same methods that we created for shape?
+- no, a Java class can also inherit traits from another class
+- because triangle is a shape, we can define triangle so that it inherits fields and methods directly from shape or an object of triangle
+- the object-oriented principle of Inheritance saves us the headache of redefining the same class members all over again
+
+-our triangle class will inherit all the traits of shape, but triangle can also contain its own unique methods and variables
+- for example, we could have an instance variable called hypotenuse and a method called findHypotenuse() that can only be accessed by triangle class references
+- objects of triangle can call any method contained in triangle or shape
+- terms:
+- parent class, superclass, and base class refer to the class that another class inherits from (like shape)
+- child class, subclass, and derived class refer to a class that inherits from another class (like triangle)
+
+Inheritance in Practice
+
+- how do we define a child class so that it inherits from a parent class?
+- we use the keyword extends like this:
+class Shape {
+  //Shape class members
+}
+
+class Triangle extends Shape {
+  //additional Triangle class members
+}
+
+- now Triangle has inherited traits from Shape, meaning it copied over class members from Shape
+- when we use inheritance to extend a subclass from a superclass, we create an "as-is" relationship from the subclass to the superclass
+- for example, an object of Triangle is a member of the Shape class; however, an object of Shape is not necessarily an object of Triangle
+- most Java programs utilize multiple classes, each of which require its own file
+- only one file needs a main() method - this is the file we will run
+- note: the various classes in our Java package -even though they are in different files -will have access to each other, so we can instantiate one class inside of another
+
+Inheriting the Constructor
+
+- let's take a look at how the super() constructor works
+- let's say Shape has a numSides field that is set by passing an integer to the constructor
+- if we're instantiating a Triangle, we would want that number to always be 3, so we'd want to modify the constructor to automatically assign numSides with a value of 3
+- can we do that?
+- as it happens, Java has a trick up its sleeve for just this occassion: using the super() method which acts like the parent constructor inside the child class constructor:
+class Triangle extends Shape {
+
+  Triangle() {
+    super(3);
+  }
+
+  // additional Triangle class members
+
+}
+
+- by passing 3 to super(), we are making it possible to instantiate a Triangle without passing in a value of numSides
+- meanwhile, super(3) (behaving as Shape(3)) will shoulder the responsibility of setting numSides to 3 for our Triangle object
+- it's like we called Shape(3)
+
+- it is also possible to write a constructor without making a call to any super() constructor:
+class Triangle extends Shape {
+
+  Triangle() {
+    this.numSides = 3;
+  }
+
+  // additional Triangle class methods
+
+}
+
+- in this situation, Java secretly calls the parent class' no-argument constructor (super())
+- so in this specific example, the Triangle() constructor first calls the Shape() constructor
+- that Shape() takes care of whatever business it needs to take care of
+- and then after that is complete, we go in and set this.numSides to 3
+
+- if you're writing a constructor of a child class, and don't explicitly make a call to a constructor from a parent class using super, it is important to remember that Java will automatically (and secretly) call super() as the first line of your child class constructor
+
+Parent Class Aspect Modifiers
+
+- you may recall that Java class members use private and public access modifiers to determine whether they can be accessed from outside the class
+- so does a child class inherit its parent's private members?
+- no
+- but there is another access modifier we can use to keep a parent class member accessible to its child classes and to files in the package it's contained in - and otherwise private: protected
+- here is what protected looks like in use:
+class Shape {
+
+  protected double perimeter;
+
+}
+
+// any child class of Shape can access perimeter
+
+- in addition to access modifiers, there's another way to establish how child classes can interact with inherited parent class members: using the final keyword
+- if we add final after a parent class method's access modifier, we disallow any child classes from changing that method
+- this is helpful in limiting bugs that might occur from modifying a particular method
+
+- though it is not required, there is an established order when two or more field modifiers are used (eg. public final)
+
+Introducing Polymorphism
+
+- in Java, if Orange is a fruit through inheritance, you can then use Orange in the same contexts as Fruit like this:
+String makeJuice(Fruit fruit) {
+
+  return "Apple juice and " + fruit.squeeze();
+
+}
+
+// inside main()
+Orange orange = new Orange();
+System.out.println(juicer.makeJuice(orange));
+
+- how does that work?
+- this is because Java incorporates the object-oriented programming principle of Polymorphism
+- Polymorphism allows a child class to share information and behavior of its parent class while also incorporating its own functionality
+- the main advantages of polymorphic programming:
+- simplifying syntax
+- reducing cognitive overload for developers
+
+
+

@@ -106,6 +106,7 @@ public static void setMyStaticVariable(int newValue){
 non-static variable this cannot be referenced from a static context
 
 Review:
+
 - Static methods and variables are associated with the class as a whole, not objects of the class.
 
 - Static methods and variables are declared as static by using the static keyword upon declaration.
