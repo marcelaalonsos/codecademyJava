@@ -1,0 +1,140 @@
+Static Methods of the Math Class
+
+The Math Class
+
+- Math can play a major role in our programs
+- it can become tedious to write out every equation we need in our code
+- the Java Math class is part of the java.lang package
+- it contains a variety of methods that can be used to perform numerical calculations in our programs
+
+Calling Static Methods
+
+- every method in the Math class is static
+- this means that we can call and use these methods without creating an object of the class
+- there are two main options for calling a static method
+-the first option is to append the dot operator to the class name followed by the method we want to execute
+- if we wanted to reference a method of the Math class, we would use Math.NameOfMethodHere
+- the Math class method .min() return the smaller vlue of two given numbers:
+class Numbers {
+  public static void main(String[] args) {
+    // Call method using the Class name, the dot operator, the method name, and arguments
+    int smallerNumber = Math.min(3, 10);
+    System.out.println(smallerNumber); // Prints: 3
+  }
+}
+
+- how is this different from calling a non-static method?
+- we don't need to create an object of the class in order to use the methods it contains
+- another example of a non-static method:
+class Numbers {
+  int firstNumber;
+  int secondNumber;
+
+  public Numbers (int num1, int num2) {
+    firstNumber = num1;
+    secondNumber = num2;
+  }
+
+  // non-static method
+  public int returnSum() {
+    return firstNumber + secondNumber;
+  }
+
+  public static void main(String[] args) {
+    // Create an object
+    Numbers myNumbers = new Numbers(2, 5);
+    // Call a non-static method on object
+    int sum = myNumbers.returnSum();
+    System.out.println(sum); // Prints: 7
+  }
+}
+
+- in our code above, we had to create an object of type Numbers in order to use the non-static method returnSum()
+- with non-static methods, if we don't create an object of this class we do not have access to its methods
+
+- our second option for calling a static method from the Math class is to import the class by adding import static java.lang.Math.*; to the top of our program
+- if we import the Math class, we can reference the method using only the method name like so:
+import static java.lang.Math.*; // import Math class
+
+class Numbers {
+  public static void main(String[] args) {
+    // Call method by using method name and arguments
+    int smallerNumber = min(3, 10);
+    System.out.println(smallerNumber); // Prints: 3
+  }
+}
+
+Useful methods
+
+- there are many useful methods from the Math class that can be implemented in our programs:
+
+int abs(int x)
+- it returns the absolute value of an int value
+- the absolute value states how many numbers a value is away from 0
+- the absolute value is always a positiive number
+- for example, the absolute value of -5 is 5 because it is 5 away from 0
+- in Java we can get the absolute value of a number like this:
+System.out.println(Math.abs(5)); // Prints: 5
+System.out.println(Math.abs(-5)); // Prints: 5
+
+double abs(double x)
+- it returns the absolute value of a double value
+- this is similar to the previous method, but this method takes in and returns a double type value:
+System.out.println(Math.abs(5.0)); // Prints: 5.0
+System.out.println(Math.abs(-5.0)); // Prints: 5.0
+
+double pow(double base, double exponent)
+- it returns the value of the first parameter raised to the power of the second parameter
+- the power, or exponent, describes how many times a number should be multiplied by itself
+- for example, 5 to the power of 3 is equivalent to 5 * 5 * 5. or 125
+- if we wanted to see this in Java, we could use Math.pow like this:
+double x = Math.pow(5, 3);
+System.out.println(x); // Prints: 125.0
+
+double sqrt(double x)
+- it returns the positive square root of a double value
+- the square root of a number represents what value can be multiplied by itself in order to equal a specified value
+- for example, the square root of 49 is 7 because 7 * 7 is 49
+- in java, getting the square root of a value looks like this:
+double x = Math.sqrt(49);
+System.out.println(x); // Prints: 7.0
+double y = Math.sqrt(52);
+System.out.println(y); // Prints: 7.211102550927978
+
+doule random()
+- it returns a double value greater than or equal to 0.0 and less than 1.0
+- randomization is a great way to add probability to our programs
+- there are many ways to implement Math.random() in Java
+- its default use case is to produce a random double value between 0.0 and 1.0:
+System.out.println(Math.random());
+System.out.println(Math.random());
+System.out.println(Math.random());
+
+- the random values can change every time we run the program
+- with some manipulation, we can use Math.random() to create a random int or double value within a predefined range
+- for example, if we wanted a random double value between 0 and 10, not including 10, we would multiply Math..random() by 10:
+// Random double value between 0 and 10, not including 10
+double a = Math.random() * 10;
+
+- if we wanted a random int value between 0 and 9, we would need to implement the (int) casting operator in our expression like so:
+// Random int value between 0 and 9
+int b = (int)(Math.random() * 10);
+
+- if we wanted our range to start at 1 and end at 10, we would have to add 1 to the end of our previous expression:
+// Random int value between 1 and 10
+int c = (int)(Math.random() * 10) + 1;
+
+- using addition also gives us the ability to start the range at any number
+- what if we wanted an int value in the range of 10 up to and including 20?
+- we would have to implement the algorithm (Math.random() * (maxValue - minValue + 1)) + minValue
+// Random int value between 10 and 20
+int d = (int)(Math.random() * 11 ) + 10;
+
+- we multiply Math.random() by 11 because 20 (our max value) minus 10 (our min value) plus 1 is 11
+- we add 10 outside the parentheses so that our smallest value is guaranteed to be 10
+- the value that you multiply by defines the number of possible values you can get
+- the number that you add defines the starting value
+- so for example, (int)(Math.random()*3) + 5; will give you one of three random values starting at 5, so this could give you 5, 6 or 7
+- finally, be careful of off-by-one errors when using Math.random()
+- for example, you might write some code that think generates a number between 1 and 10, but it actually generates a number between 1 and 9
+- be sure to test your code frequently to spot logical errors like these
