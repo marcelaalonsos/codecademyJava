@@ -1,11 +1,11 @@
 //parent class
 
 class Noodle {
-   private double lengthInCentimeters;
-   private double widthInCentimeters;
-   private String shape;
+   protected double lengthInCentimeters;
+   protected double widthInCentimeters;
+   protected String shape;
    protected String ingredients;
-   private String texture = "brittle";
+   protected String texture = "brittle";
 
    Noodle(double lenInCent, double wthInCent, String shp, String ingr) {
     this.lengthInCentimeters = lenInCent;
@@ -18,8 +18,12 @@ class Noodle {
     return true;
    }
 
-   public void cook() {
+   public String getCookPrep(){
+      return "Boil noodle for 7 minutes and add sauce";
+   }
 
+   public void cook() {
+   System.out.println("Boiling.");
     this.texture = "cooked";
    }
 
@@ -30,8 +34,21 @@ class Noodle {
     // Pho phoChay = new Pho();
     // System.out.println(phoChay.shape);
 
-    Ramen yasaiRamen = new Ramen();
-    System.out.println(yasaiRamen.ingredients);
-    System.out.println(yasaiRamen.isTasty());
+   //  Ramen yasaiRamen = new Ramen();
+   //  System.out.println(yasaiRamen.ingredients);
+   //  System.out.println(yasaiRamen.isTasty());
+
+   // Spaetzle kaesespaetzle = new Spaetzle();
+   // kaesespaetzle.cook();
+
+   // Noodle spaghetti, ramen, pho;
+   // spaghetti = new Spaghetti();
+   // ramen = new Ramen();
+   // pho = new Pho();
+
+   // Noodle[] allTheNoodles = {spaghetti, ramen, pho};
+   // for (Noodle noodle : allTheNoodles) {
+   //    System.out.println(noodle.getCookPrep());
+   // }
    }
 }
